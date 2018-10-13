@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qunar.fresh2018.dao.DifInforDao">
+    <select id="selectDiffForPage" resultType="DifInfor">
+        SELECT  id,source_content,target_content,difference,time
+        FROM dif_Information
+        ORDER BY time DESC
+    </select>
+
+    <select id="getDiffCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM dif_Information
+    </select>
+
+    <insert id="insertDiff" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dif_Information(
+        source_content,
+        target_content,
+        difference,
+        time
+        ) VALUES (
+        #{sourceContent},#{targetContent}, #{difference}, #{time}
+        )
+    </insert>
+
+    <delete id="deleteDiffById">
+        DELETE FROM dif_Information
+        WHERE id=#{id}
+    </delete>
+</mapper>
